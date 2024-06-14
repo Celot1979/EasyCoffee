@@ -8,42 +8,46 @@ public class Controlador {
         cafe_sin_Cafeina= 100;
     }
     void cafe_solo(){
-        rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+
         cafe -= 5;
         agua -= 5;
         Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
     void cafe_americano() {
-
-        cafe += 10;
+        cafe -= 10;
         agua -= 25;
-        rellenado(cafe,agua,leche,cafe_sin_Cafeina);
         Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
 
     void cafe_largo() {
-        rellenado(cafe,agua,leche,cafe_sin_Cafeina);
         cafe -= 5;
         agua -= 15;
         Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
     void cafe_con_leche(){
-        rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+
         cafe -= 5;
         agua -= 10;
         leche -= 5;
         Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
     void cafe_sin_Cafeina(){
-        rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+
+        agua-= 10;
         cafe_sin_Cafeina -= 5;
         Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
     void cafe_Corto(){
-        rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+
         cafe -= 2;
         agua -= 5;
         Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
     private void rellenado(int cafe,int agua,int leche, int cafe_sin_Cafeina){
         this.agua=agua;
@@ -69,8 +73,8 @@ public class Controlador {
     }*/
 
     void Mensaje(){
-        System.out.println("Que disfrute de su café ");
-        System.out.println("Quedan  " +getAgua()+ "ml  "+getLeche()+"ml "+getCafe()+ "ml " + getCafe_sin_Cafeina() + "ml ");
+        //System.out.println("Que disfrute de su café ");
+        //System.out.println("Quedan  " +getAgua()+ "ml  "+getLeche()+"ml "+getCafe()+ "ml " + getCafe_sin_Cafeina() + "ml ");
         JOptionPane.showMessageDialog(null, "Quedan  " + getAgua()+ "%  "+ getLeche()+"% "+ getCafe()+ "% " +  getCafe_sin_Cafeina() + "% ");
     }
 

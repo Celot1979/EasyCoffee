@@ -36,7 +36,7 @@ class lamina extends javax.swing.JPanel {
             }
 
         }
-        add(Superior, BorderLayout.NORTH);
+        add(Superior, BorderLayout.EAST);
 
     }
 
