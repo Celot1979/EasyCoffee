@@ -45,7 +45,7 @@ class lamina extends javax.swing.JPanel {
 //Clase controladora de comportamiento de los botones y sus eventos
 class Propiedades_Boton {
     public Propiedades_Boton(JButton x, String nombre) {
-        x.setBackground(Color.red);
+        x.setBackground(Color.CYAN);
         x.setText(nombre);
         // Se pasa el evento por esta clase controladora de caracteristicas y funcionalidad
         x.addActionListener(new ActionListener() {
