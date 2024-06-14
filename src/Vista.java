@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 // Creación del Panel y de sus caracteristicas.
 public class Vista extends javax.swing.JFrame {
     public Vista() {
@@ -11,7 +14,7 @@ public class Vista extends javax.swing.JFrame {
     }
 }
 //Creación del marco que contendrá los componentes de la aplicación
-class lamina extends javax.swing.JPanel{
+class lamina extends javax.swing.JPanel {
     public lamina() {
         JPanel Superior= new JPanel ();
         //Creación de los botones
@@ -31,15 +34,32 @@ class lamina extends javax.swing.JPanel{
             }else {
                 Propiedades_Boton nuevo6 =new Propiedades_Boton(button,"Café Descafeinado");
             }
+
         }
         add(Superior, BorderLayout.NORTH);
+
     }
 
-}
-//Clase que controla las caracteristicas estéticas de los botones
-class Propiedades_Boton{
+
+
+//Clase controladora de comportamiento de los botones y sus eventos
+class Propiedades_Boton {
     public Propiedades_Boton(JButton x, String nombre) {
         x.setBackground(Color.red);
         x.setText(nombre);
+        // Se pasa el evento por esta clase controladora de caracteristicas y funcionalidad
+        x.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Has clikeado " + x.getText() + " boton");
+                if(x.getText().equals("Expresso")){
+                    Controlador cafe_solo = new Controlador();
+                    cafe_solo.cafe_solo();
+                }
+            }
+        });
     }
+}
+
 }
