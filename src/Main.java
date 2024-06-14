@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("Hello world!");
+        //Llamada al modelo vista.
+        Vista nuevaVista = new Vista();
     }
 }
