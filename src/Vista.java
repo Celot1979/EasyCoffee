@@ -5,7 +5,7 @@ public class Vista extends javax.swing.JFrame {
     public Vista() {
         this.setResizable(false);
         setTitle("Easy Coffee");
-        setBounds(400,400,800,400);
+        setBounds(400,400,1000,400);
         add(new lamina());
         setVisible(true);
     }
@@ -28,7 +28,7 @@ class lamina extends javax.swing.JPanel{
                 Propiedades_Boton nuevo4 =new Propiedades_Boton(button,"Café Con Leche");
             }else if (i == 5){
                 Propiedades_Boton nuevo5 =new Propiedades_Boton(button,"Café cortado / Macchiato");
-            }else if (i == 6){
+            }else {
                 Propiedades_Boton nuevo6 =new Propiedades_Boton(button,"Café Descafeinado");
             }
         }
