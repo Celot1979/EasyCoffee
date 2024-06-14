@@ -22,17 +22,17 @@ class lamina extends javax.swing.JPanel {
             JButton button = new JButton("Botón " + i);
             Superior.add(button);
             if(i == 1){
-                Propiedades_Boton n1 =new Propiedades_Boton(button,"Expresso");
+                Propiedades_Boton n =new Propiedades_Boton(button,"EXPRESSO");
             } else if (i == 2) {
-                Propiedades_Boton n2 =new Propiedades_Boton(button,"Largo");
+                Propiedades_Boton n =new Propiedades_Boton(button,"LARGO");
             }else if (i == 3){
-                Propiedades_Boton n3 =new Propiedades_Boton(button,"Americano");
+                Propiedades_Boton n =new Propiedades_Boton(button,"AMERICANO");
             }else if (i == 4){
-                Propiedades_Boton nuevo4 =new Propiedades_Boton(button,"Café Con Leche");
+                Propiedades_Boton n =new Propiedades_Boton(button,"CAFE CON LECHE");
             }else if (i == 5){
-                Propiedades_Boton nuevo5 =new Propiedades_Boton(button,"Café cortado / Macchiato");
+                Propiedades_Boton n =new Propiedades_Boton(button,"MACCHIATO");
             }else {
-                Propiedades_Boton nuevo6 =new Propiedades_Boton(button,"Café Descafeinado");
+                Propiedades_Boton n =new Propiedades_Boton(button,"DESCAFEINADO");
             }
 
         }
@@ -44,19 +44,27 @@ class lamina extends javax.swing.JPanel {
 
 //Clase controladora de comportamiento de los botones y sus eventos
 class Propiedades_Boton {
-    public Propiedades_Boton(JButton x, String nombre) {
+        public Propiedades_Boton(){
+
+        }
+        public Propiedades_Boton(JButton x, String nombre) {
         x.setBackground(Color.CYAN);
         x.setText(nombre);
+        // Creamos un Objeto de la clase controladora de la lógica.
+        Controlador cafe = new Controlador();
         // Se pasa el evento por esta clase controladora de caracteristicas y funcionalidad
         x.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Has clikeado " + x.getText() + " boton");
-                if(x.getText().equals("Expresso")){
-                    Controlador cafe_solo = new Controlador();
-                    cafe_solo.cafe_solo();
-                }
+                // Creamos los eventos de los botones que llamarán a diferentes métodos que están el la clase controladora
+                //System.out.println("Has clikeado " + x.getText() + " boton");
+                if(x.getText().equals("EXPRESSO")) cafe.cafe_solo();
+                else if (x.getText().equals("LARGO")) cafe.cafe_largo();
+                else if (x.getText().equals("AMERICANO")) cafe.cafe_americano();
+                else if (x.getText().equals("CAFE CON LECHE")) cafe.cafe_con_leche();
+                else if (x.getText().equals("MACCHIATO"))  cafe.cafe_Corto();
+                else if (x.getText().equals("DESCAFEINADO")) cafe.cafe_sin_Cafeina();
             }
         });
     }
