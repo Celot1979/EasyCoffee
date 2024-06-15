@@ -59,12 +59,12 @@ class Propiedades_Boton {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(x.getText().equals("EXPRESSO")) cafe.Eleccion(1);
+               /* if(x.getText().equals("EXPRESSO")) cafe.Eleccion(1);
                 else if (x.getText().equals("LARGO")) cafe.Eleccion(2);
                 else if (x.getText().equals("CAFE CON LECHE")) cafe.Eleccion(3);
                 else if (x.getText().equals("MACCHIATO"))cafe.Eleccion(4);
                 else if (x.getText().equals("DESCAFEINADO")) cafe.Eleccion(5);
-                else if (x.getText().equals("APAGAR")) cafe.Eleccion(6);
+                else if (x.getText().equals("APAGAR")) cafe.Eleccion(6);*/
             }
         });
     }
