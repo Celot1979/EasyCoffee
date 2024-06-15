@@ -18,7 +18,7 @@ class lamina extends javax.swing.JPanel {
     public lamina() {
         JPanel Superior= new JPanel ();
         //Creación de los botones
-        for (int i = 1; i <= 6; i++) {
+        for (int i = 1; i <= 7; i++) {
             JButton button = new JButton("Botón " + i);
             Superior.add(button);
             if(i == 1){
@@ -31,8 +31,10 @@ class lamina extends javax.swing.JPanel {
                 Propiedades_Boton n =new Propiedades_Boton(button,"CAFE CON LECHE");
             }else if (i == 5){
                 Propiedades_Boton n =new Propiedades_Boton(button,"MACCHIATO");
-            }else {
+            }else  if (i == 6){
                 Propiedades_Boton n =new Propiedades_Boton(button,"DESCAFEINADO");
+            }else if (i == 7){
+                Propiedades_Boton n =new Propiedades_Boton(button,"APAGAR");
             }
 
         }
@@ -57,14 +59,12 @@ class Propiedades_Boton {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Creamos los eventos de los botones que llamarán a diferentes métodos que están el la clase controladora
-                //System.out.println("Has clikeado " + x.getText() + " boton");
-                if(x.getText().equals("EXPRESSO")) cafe.cafe_solo();
-                else if (x.getText().equals("LARGO")) cafe.cafe_largo();
-                else if (x.getText().equals("AMERICANO")) cafe.cafe_americano();
-                else if (x.getText().equals("CAFE CON LECHE")) cafe.cafe_con_leche();
-                else if (x.getText().equals("MACCHIATO"))  cafe.cafe_Corto();
-                else if (x.getText().equals("DESCAFEINADO")) cafe.cafe_sin_Cafeina();
+                if(x.getText().equals("EXPRESSO")) cafe.Eleccion(1);
+                else if (x.getText().equals("LARGO")) cafe.Eleccion(2);
+                else if (x.getText().equals("CAFE CON LECHE")) cafe.Eleccion(3);
+                else if (x.getText().equals("MACCHIATO"))cafe.Eleccion(4);
+                else if (x.getText().equals("DESCAFEINADO")) cafe.Eleccion(5);
+                else if (x.getText().equals("APAGAR")) cafe.Eleccion(6);
             }
         });
     }

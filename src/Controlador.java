@@ -2,82 +2,13 @@ import javax.swing.*;
 
 public class Controlador {
     public Controlador(){
-        agua =100;
-        leche = 100;
-        cafe = 100;
-        cafe_sin_Cafeina= 100;
-    }
-    void cafe_solo(){
 
-        cafe -= 5;
-        agua -= 5;
-        Mensaje();
-        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
-    }
-    void cafe_americano() {
-        cafe -= 10;
-        agua -= 25;
-        Mensaje();
-        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+
     }
 
-    void cafe_largo() {
-        cafe -= 5;
-        agua -= 15;
-        Mensaje();
-        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+    void mensaje(){
+        JOptionPane.showMessageDialog(null, "Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
     }
-    void cafe_con_leche(){
-
-        cafe -= 5;
-        agua -= 10;
-        leche -= 5;
-        Mensaje();
-        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
-    }
-    void cafe_sin_Cafeina(){
-
-        agua-= 10;
-        cafe_sin_Cafeina -= 5;
-        Mensaje();
-        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
-    }
-    void cafe_Corto(){
-
-        cafe -= 2;
-        agua -= 5;
-        Mensaje();
-        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
-    }
-    private void rellenado(int cafe,int agua,int leche, int cafe_sin_Cafeina){
-        this.agua=agua;
-        this.leche=leche;
-        this.cafe=cafe;
-        this.cafe_sin_Cafeina=cafe_sin_Cafeina;
-        if(cafe <= 10 || agua <= 10 || leche <=10) {
-            this.agua=100;
-            this.leche=100;
-            this.cafe=100;
-            this.cafe_sin_Cafeina=100;
-            JOptionPane.showMessageDialog(null, "Se ha rellenado correctamente el " + getAgua()+ "%  "+ getLeche()+"% "+ getCafe()+ "% " +  getCafe_sin_Cafeina() + "% ");
-        }
-    }
-   /* void rellenado_manual(int cafe, int agua, int leche, int cafe_sin_Cafeina){
-        this.agua=agua;
-        this.leche=leche;
-        this.cafe=cafe;
-        this.cafe_sin_Cafeina=cafe_sin_Cafeina;
-        //System.out.println("HEMOS RELLENADO MANUALMENTE");
-        JOptionPane.showMessageDialog(null, "HEMOS RELLENADO MANUALMENTE LOS VALORES ");
-
-    }*/
-
-    void Mensaje(){
-        //System.out.println("Que disfrute de su café ");
-        //System.out.println("Quedan  " +getAgua()+ "ml  "+getLeche()+"ml "+getCafe()+ "ml " + getCafe_sin_Cafeina() + "ml ");
-        JOptionPane.showMessageDialog(null, "Quedan  " + getAgua()+ "%  "+ getLeche()+"% "+ getCafe()+ "% " +  getCafe_sin_Cafeina() + "% ");
-    }
-
     public int getAgua() {
         return agua;
     }
@@ -85,14 +16,34 @@ public class Controlador {
     public int getLeche() {
         return leche;
     }
+
     public int getCafe() {
         return cafe;
     }
 
-    public int getCafe_sin_Cafeina() {
-        return cafe_sin_Cafeina;
+    public int getDescafeinado() {
+        return descafeinado;
     }
 
-    private int agua,leche,cafe,cafe_sin_Cafeina;
+    private int agua =100;
+    private int leche=100;
+    private int cafe=100;
+    private int descafeinado =100;
 
-}
+
+    }
+
+           // JOptionPane.showMessageDialog(null, "Se ha rellenado correctamente el " + getAgua()+ "%  "+ getLeche()+"% "+ getCafe()+ "% " +  getDescafeinado() + "% ");
+
+
+
+
+
+
+
+
+
+
+
+
+
