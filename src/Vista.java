@@ -22,23 +22,26 @@ class lamina extends javax.swing.JPanel {
             JButton button = new JButton("Botón " + i);
             Superior.add(button);
             if(i == 1){
-                Propiedades_Boton n =new Propiedades_Boton(button,"EXPRESSO");
+                n =new Propiedades_Boton(button,"EXPRESSO");
             } else if (i == 2) {
-                Propiedades_Boton n =new Propiedades_Boton(button,"LARGO");
+                n2 =new Propiedades_Boton(button,"LARGO");
             }else if (i == 3){
-                Propiedades_Boton n =new Propiedades_Boton(button,"AMERICANO");
+                n3 =new Propiedades_Boton(button,"AMERICANO");
             }else if (i == 4){
-                Propiedades_Boton n =new Propiedades_Boton(button,"CAFE CON LECHE");
+                n4 =new Propiedades_Boton(button,"CAFE CON LECHE");
             }else if (i == 5){
-                Propiedades_Boton n =new Propiedades_Boton(button,"MACCHIATO");
+                n5 =new Propiedades_Boton(button,"MACCHIATO");
             }else  if (i == 6){
-                Propiedades_Boton n =new Propiedades_Boton(button,"DESCAFEINADO");
+                n6 =new Propiedades_Boton(button,"DESCAFEINADO");
             }else if (i == 7){
-                Propiedades_Boton n =new Propiedades_Boton(button,"APAGAR");
+                n7 =new Propiedades_Boton(button,"APAGAR");
             }
+
 
         }
         add(Superior, BorderLayout.EAST);
+
+
 
     }
 
@@ -46,28 +49,30 @@ class lamina extends javax.swing.JPanel {
 
 //Clase controladora de comportamiento de los botones y sus eventos
 class Propiedades_Boton {
-        public Propiedades_Boton(){
 
-        }
         public Propiedades_Boton(JButton x, String nombre) {
         x.setBackground(Color.CYAN);
         x.setText(nombre);
         // Creamos un Objeto de la clase controladora de la lógica.
-        Controlador cafe = new Controlador();
+        cafe = new Controlador();
         // Se pasa el evento por esta clase controladora de caracteristicas y funcionalidad
         x.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* if(x.getText().equals("EXPRESSO")) cafe.Eleccion(1);
-                else if (x.getText().equals("LARGO")) cafe.Eleccion(2);
-                else if (x.getText().equals("CAFE CON LECHE")) cafe.Eleccion(3);
-                else if (x.getText().equals("MACCHIATO"))cafe.Eleccion(4);
-                else if (x.getText().equals("DESCAFEINADO")) cafe.Eleccion(5);
-                else if (x.getText().equals("APAGAR")) cafe.Eleccion(6);*/
+               if(x.getText().equals("EXPRESSO")) cafe.Expresso(5,5);
+               else if (x.getText().equals("LARGO")) cafe.Largo(10,5);
+               else if (x.getText().equals("AMERICANO")) cafe.Americano(10,5);
+               else if (x.getText().equals("CAFE CON LECHE")) cafe.Leche(5,5,5);
+               else if (x.getText().equals("MACCHIATO"))cafe.Macchiato(5,5,5);
+               else if (x.getText().equals("DESCAFEINADO")) cafe.Descafeinado(5,5,5);
+               else if (x.getText().equals("APAGAR")) cafe.apagar();
             }
         });
     }
+    Controlador cafe;
+
 }
+    Propiedades_Boton n,n2,n3,n4,n5,n6,n7;
 
 }
