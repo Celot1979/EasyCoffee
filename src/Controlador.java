@@ -2,76 +2,79 @@ import javax.swing.*;
 
 public class Controlador {
     public Controlador(){
-       /* this.cafe = cafe;
-        this.leche = leche;
-        this.agua = agua;
-        this.descafeinado = descafeinado;*/
-        Depositos n = new Depositos();
-        this.deposito_agua= n.getAgua();
-        this.deposito_cafe= n.getCafe();
-        this.deposito_leche = n.getLeche();
-        this.deposito_descafeinado = n.getDescafeinado();
+        agua =100;
+        leche = 100;
+        cafe = 100;
+        cafe_sin_Cafeina= 100;
     }
-    public void Expresso(int cantidad_cafe,int cantidad_agua) {
-        deposito_cafe -= cantidad_cafe;
-        deposito_agua -= cantidad_agua;
-        mensaje();
-        //System.out.println("Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
+    void cafe_solo(){
+        cafe -= 5;
+        agua -= 5;
+        Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
-    public void Largo(int cantidad_cafe,int cantidad_agua) {
-        deposito_cafe -= cantidad_cafe;
-        deposito_agua -= cantidad_agua;
-        mensaje();
-        //System.out.println("Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
-    }
-    public void Leche(int cantidad_cafe,int cantidad_agua,int cantidad_leche) {
-        deposito_cafe -= cantidad_cafe;
-        deposito_agua -= cantidad_agua;
-        deposito_leche -=cantidad_leche;
-        mensaje();
-        //System.out.println("Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
-    }
-    public void Macchiato(int cantidad_cafe,int cantidad_agua,int cantidad_leche) {
-        deposito_cafe -= cantidad_cafe;
-        deposito_agua -= cantidad_agua;
-        deposito_leche -=cantidad_leche;
-        mensaje();
-        //System.out.println("Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
-    }
-    public void Descafeinado(int cantidad_descafeinado,int cantidad_agua,int cantidad_leche) {
-        descafeinado -= cantidad_descafeinado;
-        deposito_agua -= cantidad_agua;
-        deposito_leche -=cantidad_leche;
-        mensaje();
-        //System.out.println("Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
+    void cafe_americano() {
+        cafe -= 10;
+        agua -= 25;
+        Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
 
-    public void Americano(int cantidad_cafe,int cantidad_agua) {
-        deposito_cafe -= cantidad_cafe;
-        deposito_agua -= cantidad_agua;
-        mensaje();
-        //System.out.println("Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
+    void cafe_largo() {
+        cafe -= 5;
+        agua -= 15;
+        Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
+    void cafe_con_leche(){
 
-    public void apagar(){
-        System.exit(0);
+        cafe -= 5;
+        agua -= 10;
+        leche -= 5;
+        Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
+    void cafe_sin_Cafeina(){
 
-    public void mensaje(){
-            if(deposito_cafe < 20 || deposito_agua < 20 || deposito_leche < 20 || deposito_descafeinado < 20){
-                deposito_cafe = 100;
-                deposito_agua = 100;
-                deposito_leche = 100;
-                deposito_descafeinado = 100;
-                JOptionPane.showMessageDialog(null, "Se ha rellenado todos los niveles " + "\n" + "AGUA " + deposito_agua + " % " + "\n" + "CAFE " + deposito_cafe + " % " + "\n" + "LECHE " + deposito_leche + " % " + "\n" + "DESCAFEINADO " + deposito_descafeinado + " % ");
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Su cafe. Gracias " + "\n" + "AGUA " + deposito_agua + " % " + "\n" + "CAFE " + deposito_cafe + " % " + "\n" + "LECHE " + deposito_leche + " % " + "\n" + "DESCAFEINADO " + deposito_descafeinado + " % ");
-            }
+        agua-= 10;
+        cafe_sin_Cafeina -= 5;
+        Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
     }
+    void cafe_Corto(){
 
-    public int getCafe() {
-        return cafe;
+        cafe -= 2;
+        agua -= 5;
+        Mensaje();
+        //rellenado(cafe,agua,leche,cafe_sin_Cafeina);
+    }
+    private void rellenado(int cafe,int agua,int leche, int cafe_sin_Cafeina){
+        this.agua=agua;
+        this.leche=leche;
+        this.cafe=cafe;
+        this.cafe_sin_Cafeina=cafe_sin_Cafeina;
+        if(cafe <= 10 || agua <= 10 || leche <=10) {
+            this.agua=100;
+            this.leche=100;
+            this.cafe=100;
+            this.cafe_sin_Cafeina=100;
+            JOptionPane.showMessageDialog(null, "Se ha rellenado correctamente el " + getAgua()+ "%  "+ getLeche()+"% "+ getCafe()+ "% " +  getCafe_sin_Cafeina() + "% ");
+        }
+    }
+   /* void rellenado_manual(int cafe, int agua, int leche, int cafe_sin_Cafeina){
+        this.agua=agua;
+        this.leche=leche;
+        this.cafe=cafe;
+        this.cafe_sin_Cafeina=cafe_sin_Cafeina;
+        //System.out.println("HEMOS RELLENADO MANUALMENTE");
+        JOptionPane.showMessageDialog(null, "HEMOS RELLENADO MANUALMENTE LOS VALORES ");
+
+    }*/
+
+    void Mensaje(){
+        //System.out.println("Que disfrute de su café ");
+        //System.out.println("Quedan  " +getAgua()+ "ml  "+getLeche()+"ml "+getCafe()+ "ml " + getCafe_sin_Cafeina() + "ml ");
+        JOptionPane.showMessageDialog(null, "Quedan  " + getAgua()+ "%  "+ getLeche()+"% "+ getCafe()+ "% " +  getCafe_sin_Cafeina() + "% ");
     }
 
     public int getAgua() {
@@ -81,32 +84,14 @@ public class Controlador {
     public int getLeche() {
         return leche;
     }
-
-    public int getDescafeinado() {
-        return descafeinado;
+    public int getCafe() {
+        return cafe;
     }
 
-    private int cafe,agua,leche,descafeinado,deposito_agua,deposito_cafe,deposito_leche,deposito_descafeinado;
-
-
-
+    public int getCafe_sin_Cafeina() {
+        return cafe_sin_Cafeina;
     }
 
+    private int agua,leche,cafe,cafe_sin_Cafeina;
 
-
-
-
-//JOptionPane.showMessageDialog(null, "Su cafe. Gracias " + "\n" + "AGUA" + getAgua() + " % " + "\n" + "CAFE" + getCafe() + " % " + "\n" + "LECHE" + getLeche() + " % " + "\n" + "DESCAFEINADO" + getDescafeinado() + " % ");
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

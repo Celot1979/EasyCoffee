@@ -17,62 +17,69 @@ public class Vista extends javax.swing.JFrame {
 class lamina extends javax.swing.JPanel {
     public lamina() {
         JPanel Superior= new JPanel ();
-        //Creación de los botones
-        for (int i = 1; i <= 7; i++) {
-            JButton button = new JButton("Botón " + i);
-            Superior.add(button);
-            if(i == 1){
-                n =new Propiedades_Boton(button,"EXPRESSO");
-            } else if (i == 2) {
-                n2 =new Propiedades_Boton(button,"LARGO");
-            }else if (i == 3){
-                n3 =new Propiedades_Boton(button,"AMERICANO");
-            }else if (i == 4){
-                n4 =new Propiedades_Boton(button,"CAFE CON LECHE");
-            }else if (i == 5){
-                n5 =new Propiedades_Boton(button,"MACCHIATO");
-            }else  if (i == 6){
-                n6 =new Propiedades_Boton(button,"DESCAFEINADO");
-            }else if (i == 7){
-                n7 =new Propiedades_Boton(button,"APAGAR");
-            }
-
-
-        }
-        add(Superior, BorderLayout.EAST);
-
-
-
-    }
-
-
-
-//Clase controladora de comportamiento de los botones y sus eventos
-class Propiedades_Boton {
-
-        public Propiedades_Boton(JButton x, String nombre) {
-        x.setBackground(Color.CYAN);
-        x.setText(nombre);
-        // Creamos un Objeto de la clase controladora de la lógica.
-        cafe = new Controlador();
-        // Se pasa el evento por esta clase controladora de caracteristicas y funcionalidad
-        x.addActionListener(new ActionListener() {
-
+        Controlador cafe = new Controlador();
+        b1 = new JButton("ESPRESSO");
+        b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(x.getText().equals("EXPRESSO")) cafe.Expresso(5,5);
-               else if (x.getText().equals("LARGO")) cafe.Largo(10,5);
-               else if (x.getText().equals("AMERICANO")) cafe.Americano(10,5);
-               else if (x.getText().equals("CAFE CON LECHE")) cafe.Leche(5,5,5);
-               else if (x.getText().equals("MACCHIATO"))cafe.Macchiato(5,5,5);
-               else if (x.getText().equals("DESCAFEINADO")) cafe.Descafeinado(5,5,5);
-               else if (x.getText().equals("APAGAR")) cafe.apagar();
+                cafe.cafe_solo();
             }
         });
+        Superior.add(b1);
+        b2 = new JButton("AMERICANO");
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cafe.cafe_americano();
+            }
+        });
+        Superior.add(b2);
+        b3 = new JButton("LARGO");
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cafe.cafe_largo();
+            }
+        });
+        Superior.add(b3);
+        b4 = new JButton("CAFÉ CON LECHE");
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cafe.cafe_con_leche();
+            }
+        });
+        Superior.add(b4);
+        b5 = new JButton("CAFÉ DESCAFEINADO");
+        b5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cafe.cafe_sin_Cafeina();
+            }
+        });
+        Superior.add(b5);
+        b6 = new JButton("CORTO");
+        b6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cafe.cafe_solo();
+            }
+        });
+        Superior.add(b6);
+        b7 = new JButton("SALIR");
+        b7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        Superior.add(b7);
+
+        // ------------- Añade a la frame el marco
+        add(Superior, BorderLayout.EAST);
     }
-    Controlador cafe;
+    JButton b1,b2,b3,b4,b5,b6,b7;
 
 }
-    Propiedades_Boton n,n2,n3,n4,n5,n6,n7;
 
-}
+
