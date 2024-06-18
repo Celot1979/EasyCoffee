@@ -9,6 +9,7 @@ public class Cafetera extends javax.swing.JFrame {
     private JProgressBar cafeBar;
     private JProgressBar lecheBar;
     private JProgressBar descafeinadoBar;
+    private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado;
 
     private int aguaLevel = 100;
     private int cafeLevel = 100;
@@ -25,7 +26,7 @@ public class Cafetera extends javax.swing.JFrame {
         JPanel barraPanel = new JPanel();
         barraPanel.setLayout(new GridLayout(1, 4));
 
-        // Exite un método en la clase creado especificamente para crear las barras y sus compportamientos.
+        // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
 
         aguaBar= x(aguaBar,aguaLevel,"Agua");
         cafeBar = x(cafeBar,cafeLevel,"Cafe");
@@ -37,7 +38,7 @@ public class Cafetera extends javax.swing.JFrame {
         barraPanel.add(cafeBar);
         barraPanel.add(lecheBar);
         barraPanel.add(descafeinadoBar);
-
+        // Se agrega el sub-Marco al marco central y general
         add(barraPanel, BorderLayout.CENTER);
 
         // Crear el panel de botones
@@ -45,33 +46,11 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        JButton cafe_solo = new JButton("Espresso");
-        JButton americano = new JButton("Americano");
-        JButton cafe_cortado = new JButton("Café cortado");
-        JButton leche = new JButton("Café con Leche");
-        JButton descafeinado = new JButton("Descafeinado");
-
-        // Añadir ActionListeners a los botones
-        cafe_solo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {hacerCafe();}});
-        americano.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {americano();}});
-
-        leche.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {hacerLeche();}});
-        cafe_cortado.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {cafe_cortado();}});
-
-
-        descafeinado.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {hacerDescafeinado();}});
+        cafe_solo = x(cafe_solo, "Espresso");
+        americano =  x(americano,"Americano");
+        cafe_cortado =  x(cafe_cortado,"Cortado");
+        leche =  x(leche,"Leche");
+        descafeinado =  x(leche,"Descafeinado");
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
@@ -93,10 +72,26 @@ public class Cafetera extends javax.swing.JFrame {
         x.setPreferredSize(new Dimension(250, 30));
         //Se evalua lo métodos que contienen la cantidad de agua, café, leche y descafeinado
         x.setValue(y);
-
         // Se implementa el nombre dentro de la interfaz gráfica de cada nombre de las barras
         x.setStringPainted(true);
         x.setString(s);
+        return x;
+    }
+    private JButton x(JButton x, String nombre){
+        x =  new JButton(nombre);
+        JButton finalX = x;
+        x.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               if(finalX.getText().equals("Espresso"))  hacerCafe();
+               else if (finalX.getText().equals("Americano"))  americano();
+               else if (finalX.getText().equals("Leche")) hacerLeche();
+               else if (finalX.getText().equals("Cortado"))cafe_cortado();
+               else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
+            }
+        });
+
         return x;
     }
 
@@ -160,7 +155,6 @@ public class Cafetera extends javax.swing.JFrame {
     }
 
     private void mostrarMensaje(String mensaje) {
-
         JOptionPane.showMessageDialog(this, mensaje);
     }
 
@@ -172,10 +166,7 @@ public class Cafetera extends javax.swing.JFrame {
             lecheLevel = 100;
             descafeinadoLevel = 100;
             actualizarBarras();
-
         }
-
-
         mostrarMensaje("Se han rellenado correctamente los depositos");
     }
 
