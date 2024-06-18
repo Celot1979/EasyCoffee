@@ -25,30 +25,12 @@ public class Cafetera extends javax.swing.JFrame {
         JPanel barraPanel = new JPanel();
         barraPanel.setLayout(new GridLayout(1, 4));
 
-        // Crear las barras de progreso
-        aguaBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
-        /*aguaBar.setBackground(Color.CYAN);
-        aguaBar.setForeground(Color.GREEN);*/
-        aguaBar.setPreferredSize(new Dimension(250, 30));
-        cafeBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
-        lecheBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
-        descafeinadoBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
+        // Exite un método en la clase creado especificamente para crear las barras y sus compportamientos.
 
-        // Configurar las barras de progreso
-        aguaBar.setValue(aguaLevel);
-        cafeBar.setValue(cafeLevel);
-        lecheBar.setValue(lecheLevel);
-        descafeinadoBar.setValue(descafeinadoLevel);
-
-        // Añadir etiquetas a las barras de progreso
-        aguaBar.setStringPainted(true);
-        aguaBar.setString("Agua");
-        cafeBar.setStringPainted(true);
-        cafeBar.setString("Café");
-        lecheBar.setStringPainted(true);
-        lecheBar.setString("Leche");
-        descafeinadoBar.setStringPainted(true);
-        descafeinadoBar.setString("Descafeinado");
+        aguaBar= x(aguaBar,aguaLevel,"Agua");
+        cafeBar = x(cafeBar,cafeLevel,"Cafe");
+        lecheBar= x(lecheBar,lecheLevel,"Leche");
+        descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descafeinado");
 
         // Añadir las barras de progreso al panel
         barraPanel.add(aguaBar);
@@ -72,28 +54,24 @@ public class Cafetera extends javax.swing.JFrame {
         // Añadir ActionListeners a los botones
         cafe_solo.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                hacerCafe();
-            }
-        });
+            public void actionPerformed(ActionEvent e) {hacerCafe();}});
         americano.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {americano();}
-        });
+            public void actionPerformed(ActionEvent e) {americano();}});
 
         leche.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                hacerLeche();
-            }
-        });
+            public void actionPerformed(ActionEvent e) {hacerLeche();}});
+        cafe_cortado.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {cafe_cortado();}});
+
 
         descafeinado.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {hacerDescafeinado();
-            }
-        });
+            public void actionPerformed(ActionEvent e) {hacerDescafeinado();}});
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
@@ -103,6 +81,23 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.add(descafeinado);
 
         add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private JProgressBar x(JProgressBar x ,int y, String s){
+        //Se crea la barra/as
+        x =new JProgressBar(JProgressBar.VERTICAL, 0, 100);
+        // Se crea un estilo con color de tipo/os, barra/as y tipografia/as
+        x.setBackground(Color.CYAN);
+        x.setForeground(Color.GREEN);
+        // Se le da un tamaño a las barras. De ancho y altura * OJO!! en Mas no funciona
+        x.setPreferredSize(new Dimension(250, 30));
+        //Se evalua lo métodos que contienen la cantidad de agua, café, leche y descafeinado
+        x.setValue(y);
+
+        // Se implementa el nombre dentro de la interfaz gráfica de cada nombre de las barras
+        x.setStringPainted(true);
+        x.setString(s);
+        return x;
     }
 
     private void hacerCafe() {
@@ -140,6 +135,17 @@ public class Cafetera extends javax.swing.JFrame {
         if (aguaLevel >= 10 && cafeLevel >= 5) {
             aguaLevel -= 10;
             cafeLevel -= 15;
+            actualizarBarras();
+        } else {
+            rellenado();
+        }
+    }
+
+    private void cafe_cortado(){
+        if (aguaLevel >= 10 && cafeLevel >= 5 && lecheLevel >= 5) {
+            aguaLevel -= 10;
+            cafeLevel -= 5;
+            lecheLevel -=5;
             actualizarBarras();
         } else {
             rellenado();
