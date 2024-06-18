@@ -17,7 +17,7 @@ public class Cafetera extends javax.swing.JFrame {
 
     public Cafetera() {
         // Configuración básica de la ventana
-        setTitle("EasyCoffe");
+        setTitle("EasyCoffe");//cambio
         setSize(800, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
