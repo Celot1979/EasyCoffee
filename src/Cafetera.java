@@ -17,7 +17,7 @@ public class Cafetera extends javax.swing.JFrame {
 
     public Cafetera() {
         // Configuración básica de la ventana
-        setTitle("EasyCoffe");//cambio
+        setTitle("EasyCoffe");
         setSize(800, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -27,8 +27,9 @@ public class Cafetera extends javax.swing.JFrame {
 
         // Crear las barras de progreso
         aguaBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
-        aguaBar.setBackground(Color.CYAN);
-        aguaBar.setForeground(Color.GREEN);
+        /*aguaBar.setBackground(Color.CYAN);
+        aguaBar.setForeground(Color.GREEN);*/
+        aguaBar.setPreferredSize(new Dimension(250, 30));
         cafeBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
         lecheBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
         descafeinadoBar = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
@@ -75,6 +76,11 @@ public class Cafetera extends javax.swing.JFrame {
                 hacerCafe();
             }
         });
+        americano.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {americano();}
+        });
 
         leche.addActionListener(new ActionListener() {
             @Override
@@ -85,8 +91,7 @@ public class Cafetera extends javax.swing.JFrame {
 
         descafeinado.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                hacerDescafeinado();
+            public void actionPerformed(ActionEvent e) {hacerDescafeinado();
             }
         });
 
@@ -131,6 +136,15 @@ public class Cafetera extends javax.swing.JFrame {
             rellenado();
         }
     }
+    private void americano(){
+        if (aguaLevel >= 10 && cafeLevel >= 5) {
+            aguaLevel -= 10;
+            cafeLevel -= 15;
+            actualizarBarras();
+        } else {
+            rellenado();
+        }
+    }
 
     private void actualizarBarras() {
         aguaBar.setValue(aguaLevel);
@@ -151,11 +165,11 @@ public class Cafetera extends javax.swing.JFrame {
             cafeLevel =100;
             lecheLevel = 100;
             descafeinadoLevel = 100;
-
+            actualizarBarras();
 
         }
 
-        actualizarBarras();
+
         mostrarMensaje("Se han rellenado correctamente los depositos");
     }
 
