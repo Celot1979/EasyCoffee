@@ -49,11 +49,11 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        cafe_solo = x(cafe_solo, "Espresso","Espresso.png");
-        americano =  x(americano,"Americano","Americano.png");
-        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png");
-        leche =  x(leche,"Leche","leche.png");
-        descafeinado =  x(leche,"Descafeinado","Descafeinado.png");
+        cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(196, 149, 81, 255));
+        americano =  x(americano,"Americano","Americano.png",new Color(196, 149, 81, 255));
+        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(196, 149, 81, 255));
+        leche =  x(leche,"Leche","leche.png",new Color(196, 149, 81, 255));
+        descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(196, 149, 81, 255));
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
@@ -81,13 +81,19 @@ public class Cafetera extends javax.swing.JFrame {
         return x;
     }
 
-    private JButton x(JButton x, String nombre,String imagen){
+    private JButton x(JButton x, String nombre,String imagen,Color color){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
-        Image nueva_original = original.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        Image nueva_original = original.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
         x =  new JButton(nombre,icono);
+        //Color fondo del botón
+        x.setBackground(color);
+
+        //Cambiar tipografia y su color
+       // x.setForeground(Color.white);
         JButton finalX = x;
+
         x.addActionListener(new ActionListener() {
 
             @Override
