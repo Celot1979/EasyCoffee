@@ -49,11 +49,11 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        cafe_solo = x(cafe_solo, "Espresso","Espresso");
-        americano =  x(americano,"Americano","Americano");
-        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado");
-        leche =  x(leche,"Leche","con leche");
-        descafeinado =  x(leche,"Descafeinado","Descafeinado");
+        cafe_solo = x(cafe_solo, "Espresso","src/IMG/Espresso.png");
+        americano =  x(americano,"Americano","src/IMG/Americano.png");
+        cafe_cortado =  x(cafe_cortado,"Cortado","src/IMG/Cortado.png");
+        leche =  x(leche,"Leche","src/IMG/con leche.png");
+        descafeinado =  x(leche,"Descafeinado","src/IMG/Descafeinado.png");
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
