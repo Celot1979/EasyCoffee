@@ -1,20 +1,22 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 
 // Creación del Panel y de sus caracteristicas.
 public class Cafetera extends javax.swing.JFrame {
-    private JProgressBar aguaBar;
-    private JProgressBar cafeBar;
-    private JProgressBar lecheBar;
-    private JProgressBar descafeinadoBar;
+    private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
     private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado;
-
     private int aguaLevel = 100;
     private int cafeLevel = 100;
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
+
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -25,6 +27,7 @@ public class Cafetera extends javax.swing.JFrame {
         // Crear el panel de barras
         JPanel barraPanel = new JPanel();
         barraPanel.setLayout(new GridLayout(1, 4));
+
 
         // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
 
@@ -77,6 +80,7 @@ public class Cafetera extends javax.swing.JFrame {
         x.setString(s);
         return x;
     }
+
     private JButton x(JButton x, String nombre){
         x =  new JButton(nombre);
         JButton finalX = x;
@@ -84,7 +88,8 @@ public class Cafetera extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(finalX.getText().equals("Espresso"))  hacerCafe();
+
+               if(finalX.getText().equals("Espresso"))  {hacerCafe();}
                else if (finalX.getText().equals("Americano"))  americano();
                else if (finalX.getText().equals("Leche")) hacerLeche();
                else if (finalX.getText().equals("Cortado"))cafe_cortado();
@@ -169,6 +174,8 @@ public class Cafetera extends javax.swing.JFrame {
         }
         mostrarMensaje("Se han rellenado correctamente los depositos");
     }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
