@@ -69,8 +69,9 @@ public class Cafetera extends javax.swing.JFrame {
         //Se crea la barra/as
         x =new JProgressBar(JProgressBar.VERTICAL, 0, 100);
         // Se crea un estilo con color de tipo/os, barra/as y tipografia/as
-        x.setBackground(Color.CYAN);
-        x.setForeground(Color.GREEN);
+        x.setBackground(Color.black);
+        x.setForeground(new Color(196, 149, 81, 255));
+
         // Se le da un tamaño a las barras. De ancho y altura * OJO!! en Mas no funciona
         x.setPreferredSize(new Dimension(250, 30));
         //Se evalua lo métodos que contienen la cantidad de agua, café, leche y descafeinado
@@ -91,7 +92,7 @@ public class Cafetera extends javax.swing.JFrame {
         x.setBackground(color);
 
         //Cambiar tipografia y su color
-       // x.setForeground(Color.white);
+       x.setForeground(Color.white);
         JButton finalX = x;
 
         x.addActionListener(new ActionListener() {
