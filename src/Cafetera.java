@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import Sonido.*;
 
 
 // Creación del Panel y de sus caracteristicas.
@@ -17,6 +18,8 @@ public class Cafetera extends javax.swing.JFrame {
     private int cafeLevel = 100;
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
+
+    private Sonido reproductor;
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -99,8 +102,12 @@ public class Cafetera extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
-               if(finalX.getText().equals("Espresso"))  {hacerCafe();}
+                Sonido reproductor = new Sonido();
+               if(finalX.getText().equals("Espresso"))  {
+                   reproductor.cargarSonido("src/recursos/cafe.mp3");
+                   reproductor.reproduccir();
+                   hacerCafe();
+                   }
                else if (finalX.getText().equals("Americano"))  americano();
                else if (finalX.getText().equals("Leche")) hacerLeche();
                else if (finalX.getText().equals("Cortado"))cafe_cortado();
@@ -175,7 +182,7 @@ public class Cafetera extends javax.swing.JFrame {
     }
 
     private void rellenado(){
-        mostrarMensaje("No hay suficiente agua o café");
+        mostrarMensaje("No hay suficiente agua / café / leche / descafeinado");
         if (aguaLevel <= 10 || cafeLevel <= 5 || lecheLevel <=5 || descafeinadoLevel <= 5){
             aguaLevel = 100;
             cafeLevel =100;
