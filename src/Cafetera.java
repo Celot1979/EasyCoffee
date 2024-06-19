@@ -187,6 +187,14 @@ public class Cafetera extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
+        //Código para que se vea la interfaz gráfica igual en todos los sistemas operativos
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Inicio del programa
         SwingUtilities.invokeLater(() -> {
             Cafetera cafetera = new Cafetera();
             cafetera.setVisible(true);
