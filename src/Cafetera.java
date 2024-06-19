@@ -1,22 +1,22 @@
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
 
 
 // Creación del Panel y de sus caracteristicas.
 public class Cafetera extends javax.swing.JFrame {
     private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
     private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado;
+
     private int aguaLevel = 100;
     private int cafeLevel = 100;
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
-
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -49,11 +49,11 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        cafe_solo = x(cafe_solo, "Espresso");
-        americano =  x(americano,"Americano");
-        cafe_cortado =  x(cafe_cortado,"Cortado");
-        leche =  x(leche,"Leche");
-        descafeinado =  x(leche,"Descafeinado");
+        cafe_solo = x(cafe_solo, "Espresso","Espresso");
+        americano =  x(americano,"Americano","Americano");
+        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado");
+        leche =  x(leche,"Leche","con leche");
+        descafeinado =  x(leche,"Descafeinado","Descafeinado");
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
@@ -81,8 +81,12 @@ public class Cafetera extends javax.swing.JFrame {
         return x;
     }
 
-    private JButton x(JButton x, String nombre){
-        x =  new JButton(nombre);
+    private JButton x(JButton x, String nombre,String imagen){
+        ImageIcon icono = new  ImageIcon( "src/IMG/" + "Espresso");
+        Image original = icono.getImage();
+        Image nueva_original = original.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(nueva_original);
+        x =  new JButton(nombre,icono);
         JButton finalX = x;
         x.addActionListener(new ActionListener() {
 
@@ -174,8 +178,6 @@ public class Cafetera extends javax.swing.JFrame {
         }
         mostrarMensaje("Se han rellenado correctamente los depositos");
     }
-
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
