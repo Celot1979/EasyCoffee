@@ -104,7 +104,7 @@ public class Cafetera extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 Sonido reproductor = new Sonido();
                if(finalX.getText().equals("Espresso"))  {
-                   reproductor.cargarSonido("src/recursos/cafe.mp3");
+                   reproductor.cargarSonido("src/recursos/coffe.wma");
                    reproductor.reproduccir();
                    hacerCafe();
                    }

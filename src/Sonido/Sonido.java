@@ -16,8 +16,11 @@ public class Sonido {
 
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
+            System.out.println("No se puede abrir el archivo");
         } catch (LineUnavailableException e) {
+            System.out.println("No se puede abrir el archivo2");
             throw new RuntimeException(e);
+
         }
     }
 
