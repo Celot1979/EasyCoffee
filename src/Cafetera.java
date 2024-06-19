@@ -194,6 +194,7 @@ public class Cafetera extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
+
         //Inicio del programa
         SwingUtilities.invokeLater(() -> {
             Cafetera cafetera = new Cafetera();
