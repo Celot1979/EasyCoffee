@@ -52,7 +52,7 @@ public class Cafetera extends javax.swing.JFrame {
         cafe_solo = x(cafe_solo, "Espresso","Espresso.png");
         americano =  x(americano,"Americano","Americano.png");
         cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png");
-        leche =  x(leche,"Leche","src/IMG/con leche.png");
+        leche =  x(leche,"Leche","leche.png");
         descafeinado =  x(leche,"Descafeinado","Descafeinado.png");
 
         // Añadir los botones al panel
