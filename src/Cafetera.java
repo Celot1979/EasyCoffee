@@ -49,11 +49,11 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        cafe_solo = x(cafe_solo, "Espresso","src/IMG/Espresso.png");
-        americano =  x(americano,"Americano","src/IMG/Americano.png");
-        cafe_cortado =  x(cafe_cortado,"Cortado","src/IMG/Cortado.png");
+        cafe_solo = x(cafe_solo, "Espresso","Espresso.png");
+        americano =  x(americano,"Americano","Americano.png");
+        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png");
         leche =  x(leche,"Leche","src/IMG/con leche.png");
-        descafeinado =  x(leche,"Descafeinado","src/IMG/Descafeinado.png");
+        descafeinado =  x(leche,"Descafeinado","Descafeinado.png");
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
@@ -82,7 +82,7 @@ public class Cafetera extends javax.swing.JFrame {
     }
 
     private JButton x(JButton x, String nombre,String imagen){
-        ImageIcon icono = new  ImageIcon( "src/IMG/" + "Espresso");
+        ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
         Image nueva_original = original.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
