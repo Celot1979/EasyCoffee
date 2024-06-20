@@ -35,7 +35,6 @@ public class Sonido {
 
     public void detener(){
         if(clip != null && clip.isRunning()){
-
             clip.stop();
         }
     }

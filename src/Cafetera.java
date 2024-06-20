@@ -1,12 +1,14 @@
 import javax.sound.sampled.*;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+
 import Sonido.*;
 
 
@@ -20,7 +22,7 @@ public class Cafetera extends javax.swing.JFrame {
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
 
-    private Sonido reproductor;
+
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -89,30 +91,28 @@ public class Cafetera extends javax.swing.JFrame {
     private JButton x(JButton x, String nombre,String imagen,Color color){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
-        Image nueva_original = original.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Image nueva_original = original.getScaledInstance(160, 100, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
         x =  new JButton(nombre,icono);
-        // Desactivar la apariencia nativa del botón
-        x.setOpaque(true);
-        x.setBorderPainted(false);
-
         //Color fondo del botón
-        x.setBackground(new Color(196, 149, 81, 255));
-
+        x.setBackground(color);
         //Cambiar tipografia y su color
         x.setForeground(Color.white);
         JButton finalX = x;
 
-        finalX .addActionListener(new ActionListener() {
+        x.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(finalX.getText().equals("Espresso"))  {hacerCafe();}
-                else if (finalX.getText().equals("Americano"))  americano();
-                else if (finalX.getText().equals("Leche")) hacerLeche();
-                else if (finalX.getText().equals("Cortado"))cafe_cortado();
-                else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
+                Sonido reproductor = new Sonido();
+               if(finalX.getText().equals("Espresso"))  {hacerCafe();}
+               else if (finalX.getText().equals("Americano"))  americano();
+               else if (finalX.getText().equals("Leche")) hacerLeche();
+               else if (finalX.getText().equals("Cortado"))cafe_cortado();
+               else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
             }
+
         });
+
 
 
         return x;
@@ -201,6 +201,12 @@ public class Cafetera extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
+        // Con estás instrucciones los botones responden con el mismo color en cada evento.
+        //UIManager.put("Button.background", new Color(196, 149, 81, 255));
+        UIManager.put("Button.focus", new Color(196, 149, 81, 255));
+        UIManager.put("Button.select", new Color(196, 149, 81, 255));
+        UIManager.put("Button.disabledText", new Color(196, 149, 81, 255));
+        UIManager.put("Button.foreground", new Color(196, 149, 81, 255));
 
         //Inicio del programa
         SwingUtilities.invokeLater(() -> {
