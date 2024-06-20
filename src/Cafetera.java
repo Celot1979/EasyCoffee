@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Sonido.*;
+
 
 
 // Creación del Panel y de sus caracteristicas.
@@ -26,7 +26,7 @@ public class Cafetera extends javax.swing.JFrame {
         setLayout(new BorderLayout());
         // Crear el panel de barras
         JPanel barraPanel = new JPanel();
-        barraPanel.setLayout(new GridLayout(1, 4));
+        barraPanel.setLayout(new GridLayout(1, 5));
 
 
         // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
@@ -50,7 +50,7 @@ public class Cafetera extends javax.swing.JFrame {
 
         // Crear botones para hacer café, leche y descafeinado
         cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(196, 149, 81, 255));
-        americano =  x(americano,"Americano","Americano.png",new Color(196, 149, 81, 255));
+        americano =  x(americano,"Americano","Americano .png",new Color(196, 149, 81, 255));
         cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(196, 149, 81, 255));
         leche =  x(leche,"Leche","leche.png",new Color(196, 149, 81, 255));
         descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(196, 149, 81, 255));
@@ -85,7 +85,7 @@ public class Cafetera extends javax.swing.JFrame {
     private JButton x(JButton x, String nombre,String imagen,Color color){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
-        Image nueva_original = original.getScaledInstance(160, 100, Image.SCALE_SMOOTH);
+        Image nueva_original = original.getScaledInstance(160, 60, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
         x =  new JButton(nombre,icono);
         //Color fondo del botón
