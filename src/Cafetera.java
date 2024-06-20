@@ -1,8 +1,9 @@
 import javax.sound.sampled.*;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -88,32 +89,31 @@ public class Cafetera extends javax.swing.JFrame {
     private JButton x(JButton x, String nombre,String imagen,Color color){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
-        Image nueva_original = original.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
+        Image nueva_original = original.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
         x =  new JButton(nombre,icono);
+        // Desactivar la apariencia nativa del botón
+        x.setOpaque(true);
+        x.setBorderPainted(false);
+
         //Color fondo del botón
-        x.setBackground(color);
+        x.setBackground(new Color(196, 149, 81, 255));
 
         //Cambiar tipografia y su color
-       x.setForeground(Color.white);
+        x.setForeground(Color.white);
         JButton finalX = x;
 
-        x.addActionListener(new ActionListener() {
-
+        finalX .addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Sonido reproductor = new Sonido();
-               if(finalX.getText().equals("Espresso"))  {
-                   reproductor.cargarSonido("src/recursos/coffe.wma");
-                   reproductor.reproduccir();
-                   hacerCafe();
-                   }
-               else if (finalX.getText().equals("Americano"))  americano();
-               else if (finalX.getText().equals("Leche")) hacerLeche();
-               else if (finalX.getText().equals("Cortado"))cafe_cortado();
-               else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
+                if(finalX.getText().equals("Espresso"))  {hacerCafe();}
+                else if (finalX.getText().equals("Americano"))  americano();
+                else if (finalX.getText().equals("Leche")) hacerLeche();
+                else if (finalX.getText().equals("Cortado"))cafe_cortado();
+                else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
             }
         });
+
 
         return x;
     }
