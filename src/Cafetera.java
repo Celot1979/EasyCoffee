@@ -10,13 +10,14 @@ import java.awt.event.ActionListener;
 public class Cafetera extends javax.swing.JFrame {
     private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
     private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado;
-
+    private JSlider barraAzucar;
+    private JLabel etiquetaAzucar;
     private int aguaLevel = 100;
     private int cafeLevel = 100;
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
-
-
+    private static final int MAX_AZUCAR = 10; // cucharadas
+    private int azucar = 0;
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -35,12 +36,42 @@ public class Cafetera extends javax.swing.JFrame {
         cafeBar = x(cafeBar,cafeLevel,"Cafe");
         lecheBar= x(lecheBar,lecheLevel,"Leche");
         descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descafeinado");
+        //Creamos el JSlider de la azúcar con sus botones
+        barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
+        barraAzucar.setBounds(300, 150, 50, 200);
+        barraAzucar.setMajorTickSpacing(1);
+        barraAzucar.setPaintTicks(true);
+        barraAzucar.setPaintLabels(true);
+        // Etiqueta para mostrar la cantidad de azúcar
+        etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
+        etiquetaAzucar.setBounds(300, 350, 100, 30);
+        barraPanel.add(etiquetaAzucar);
 
-        // Añadir las barras de progreso al panel
+        // Botones para incrementar y decrementar el azúcar
+        JButton botonIncrementarAzucar = new JButton("+");
+        botonIncrementarAzucar.setBounds(300, 100, 50, 50);
+        botonIncrementarAzucar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                incrementarAzucar();
+            }
+        });
+        barraPanel.add(botonIncrementarAzucar);
+
+        JButton botonDecrementarAzucar = new JButton("-");
+        botonDecrementarAzucar.setBounds(300, 400, 50, 50);
+        botonDecrementarAzucar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                decrementarAzucar();
+            }
+        });
+        barraPanel.add(botonDecrementarAzucar);
+
+        // Añadir las barras de progreso al panel y el JSlider de la azúcar
         barraPanel.add(aguaBar);
         barraPanel.add(cafeBar);
         barraPanel.add(lecheBar);
         barraPanel.add(descafeinadoBar);
+        barraPanel.add(barraAzucar);
         // Se agrega el sub-Marco al marco central y general
         add(barraPanel, BorderLayout.CENTER);
 
@@ -185,6 +216,22 @@ public class Cafetera extends javax.swing.JFrame {
         }
         mostrarMensaje("Se han rellenado correctamente los depositos");
     }
+    private void incrementarAzucar() {
+        if (azucar < MAX_AZUCAR) {
+            azucar++;
+            barraAzucar.setValue(azucar);
+            etiquetaAzucar.setText("Azúcar: " + azucar + " cdtas");
+        }
+    }
+
+    private void decrementarAzucar() {
+        if (azucar > 0) {
+            azucar--;
+            barraAzucar.setValue(azucar);
+            etiquetaAzucar.setText("Azúcar: " + azucar + " cdtas");
+        }
+    }
+
 
     public static void main(String[] args) {
         //Código para que se vea la interfaz gráfica igual en todos los sistemas operativos
