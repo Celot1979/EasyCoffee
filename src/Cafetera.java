@@ -36,12 +36,15 @@ public class Cafetera extends javax.swing.JFrame {
         cafeBar = x(cafeBar,cafeLevel,"Cafe");
         lecheBar= x(lecheBar,lecheLevel,"Leche");
         descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descafeinado");
+
+
         //Creamos el JSlider de la azúcar con sus botones
         barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
         barraAzucar.setBounds(300, 150, 50, 200);
         barraAzucar.setMajorTickSpacing(1);
         barraAzucar.setPaintTicks(true);
         barraAzucar.setPaintLabels(true);
+        barraAzucar.setBackground(new Color(196, 149, 81, 255));
         // Etiqueta para mostrar la cantidad de azúcar
         etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
         etiquetaAzucar.setBounds(300, 350, 100, 30);
