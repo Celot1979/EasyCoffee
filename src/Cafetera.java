@@ -1,8 +1,8 @@
 
 import javax.swing.*;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 
 
@@ -10,14 +10,13 @@ import java.awt.event.ActionListener;
 public class Cafetera extends javax.swing.JFrame {
     private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
     private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado;
-    private JSlider barraAzucar;
-    private JLabel etiquetaAzucar;
+
     private int aguaLevel = 100;
     private int cafeLevel = 100;
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
-    private static final int MAX_AZUCAR = 10; // cucharadas
-    private int azucar = 0;
+
+
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -27,7 +26,7 @@ public class Cafetera extends javax.swing.JFrame {
         setLayout(new BorderLayout());
         // Crear el panel de barras
         JPanel barraPanel = new JPanel();
-        barraPanel.setLayout(new GridLayout(1, 5));
+        barraPanel.setLayout(new GridLayout(1, 4));
 
 
         // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
@@ -36,42 +35,12 @@ public class Cafetera extends javax.swing.JFrame {
         cafeBar = x(cafeBar,cafeLevel,"Cafe");
         lecheBar= x(lecheBar,lecheLevel,"Leche");
         descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descafeinado");
-        //Creamos el JSlider de la azúcar con sus botones
-        barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
-        barraAzucar.setBounds(300, 150, 50, 200);
-        barraAzucar.setMajorTickSpacing(1);
-        barraAzucar.setPaintTicks(true);
-        barraAzucar.setPaintLabels(true);
-        // Etiqueta para mostrar la cantidad de azúcar
-        etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
-        etiquetaAzucar.setBounds(300, 350, 100, 30);
-        barraPanel.add(etiquetaAzucar);
 
-        // Botones para incrementar y decrementar el azúcar
-        JButton botonIncrementarAzucar = new JButton("+");
-        botonIncrementarAzucar.setBounds(300, 100, 50, 50);
-        botonIncrementarAzucar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                incrementarAzucar();
-            }
-        });
-        barraPanel.add(botonIncrementarAzucar);
-
-        JButton botonDecrementarAzucar = new JButton("-");
-        botonDecrementarAzucar.setBounds(300, 400, 50, 50);
-        botonDecrementarAzucar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                decrementarAzucar();
-            }
-        });
-        barraPanel.add(botonDecrementarAzucar);
-
-        // Añadir las barras de progreso al panel y el JSlider de la azúcar
+        // Añadir las barras de progreso al panel
         barraPanel.add(aguaBar);
         barraPanel.add(cafeBar);
         barraPanel.add(lecheBar);
         barraPanel.add(descafeinadoBar);
-        barraPanel.add(barraAzucar);
         // Se agrega el sub-Marco al marco central y general
         add(barraPanel, BorderLayout.CENTER);
 
@@ -81,7 +50,7 @@ public class Cafetera extends javax.swing.JFrame {
 
         // Crear botones para hacer café, leche y descafeinado
         cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(196, 149, 81, 255));
-        americano =  x(americano,"Americano","Americano .png",new Color(196, 149, 81, 255));
+        americano =  x(americano,"Americano","Americano.png",new Color(196, 149, 81, 255));
         cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(196, 149, 81, 255));
         leche =  x(leche,"Leche","leche.png",new Color(196, 149, 81, 255));
         descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(196, 149, 81, 255));
@@ -116,27 +85,30 @@ public class Cafetera extends javax.swing.JFrame {
     private JButton x(JButton x, String nombre,String imagen,Color color){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
-        Image nueva_original = original.getScaledInstance(160, 60, Image.SCALE_SMOOTH);
+        Image nueva_original = original.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
         x =  new JButton(nombre,icono);
+        // Desactivar la apariencia nativa del botón
+        x.setOpaque(true);
+        x.setBorderPainted(false);
+
         //Color fondo del botón
-        x.setBackground(color);
+        x.setBackground(new Color(196, 149, 81, 255));
+
         //Cambiar tipografia y su color
         x.setForeground(Color.white);
         JButton finalX = x;
 
-        x.addActionListener(new ActionListener() {
+        finalX .addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(finalX.getText().equals("Espresso"))  {hacerCafe();}
-               else if (finalX.getText().equals("Americano"))  americano();
-               else if (finalX.getText().equals("Leche")) hacerLeche();
-               else if (finalX.getText().equals("Cortado"))cafe_cortado();
-               else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
+                if(finalX.getText().equals("Espresso"))  {hacerCafe();}
+                else if (finalX.getText().equals("Americano"))  americano();
+                else if (finalX.getText().equals("Leche")) hacerLeche();
+                else if (finalX.getText().equals("Cortado"))cafe_cortado();
+                else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
             }
-
         });
-
 
 
         return x;
@@ -216,22 +188,6 @@ public class Cafetera extends javax.swing.JFrame {
         }
         mostrarMensaje("Se han rellenado correctamente los depositos");
     }
-    private void incrementarAzucar() {
-        if (azucar < MAX_AZUCAR) {
-            azucar++;
-            barraAzucar.setValue(azucar);
-            etiquetaAzucar.setText("Azúcar: " + azucar + " cdtas");
-        }
-    }
-
-    private void decrementarAzucar() {
-        if (azucar > 0) {
-            azucar--;
-            barraAzucar.setValue(azucar);
-            etiquetaAzucar.setText("Azúcar: " + azucar + " cdtas");
-        }
-    }
-
 
     public static void main(String[] args) {
         //Código para que se vea la interfaz gráfica igual en todos los sistemas operativos
@@ -241,12 +197,6 @@ public class Cafetera extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        // Con estás instrucciones los botones responden con el mismo color en cada evento.
-        //UIManager.put("Button.background", new Color(196, 149, 81, 255));
-        UIManager.put("Button.focus", new Color(196, 149, 81, 255));
-        UIManager.put("Button.select", new Color(196, 149, 81, 255));
-        UIManager.put("Button.disabledText", new Color(196, 149, 81, 255));
-        UIManager.put("Button.foreground", new Color(196, 149, 81, 255));
 
         //Inicio del programa
         SwingUtilities.invokeLater(() -> {
