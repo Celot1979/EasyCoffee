@@ -18,6 +18,7 @@ public class Cafetera extends javax.swing.JFrame {
     private int descafeinadoLevel = 100;
     private static final int MAX_AZUCAR = 5; // cucharadas
     private int azucar = 0;
+    private boolean dimension = false;
 
     public Cafetera() {
         // Configuración básica de la ventana
@@ -35,7 +36,6 @@ public class Cafetera extends javax.swing.JFrame {
 
 
         // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
-
         aguaBar= x(aguaBar,aguaLevel,"Agua");
         cafeBar = x(cafeBar,cafeLevel,"Cafe");
         lecheBar= x(lecheBar,lecheLevel,"Leche");
@@ -48,15 +48,8 @@ public class Cafetera extends javax.swing.JFrame {
         etiquetaAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Botón de incrementar el azúcaar
-
-        botonIncrementarAzucar =x(botonIncrementarAzucar, "+","Mas.png",new Color(196, 149, 81, 255));
-        botonIncrementarAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botonIncrementarAzucar.setPreferredSize(new Dimension(100, 50));
-
-
-        botonDecrementarAzucar =x(botonDecrementarAzucar, "-","Menos.png",new Color(196, 149, 81, 255));
-        botonDecrementarAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botonDecrementarAzucar.setPreferredSize(new Dimension(100, 50));
+        botonIncrementarAzucar =x(botonIncrementarAzucar, "+","Mas.png",new Color(196, 149, 81, 255),true);
+        botonDecrementarAzucar =x(botonDecrementarAzucar, "-","Menos.png",new Color(196, 149, 81, 255),true);
 
         //Creamos el JSlider de la azúcar con sus botones
         barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
@@ -67,12 +60,12 @@ public class Cafetera extends javax.swing.JFrame {
         barraAzucar.setBackground(new Color(196, 149, 81, 255));
         barraAzucarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
         // Añadir las barras de progreso al panel y el JSlider de la azúcar
         barraPanel.add(aguaBar);
         barraPanel.add(cafeBar);
         barraPanel.add(lecheBar);
         barraPanel.add(descafeinadoBar);
+
         // Añadir los elementos que conforman el Layaout del azúcar
         barraAzucarPanel.add(etiquetaAzucar);
         barraAzucarPanel.add(botonIncrementarAzucar);
@@ -81,16 +74,17 @@ public class Cafetera extends javax.swing.JFrame {
         // Se agrega el sub-Marco al marco central y general
         add(barraPanel, BorderLayout.CENTER);
         add(barraAzucarPanel,BorderLayout.WEST);
+
         // Crear el panel de botones
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(196, 149, 81, 255));
-        americano =  x(americano,"Americano","Americano .png",new Color(196, 149, 81, 255));
-        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(196, 149, 81, 255));
-        leche =  x(leche,"Leche","leche.png",new Color(196, 149, 81, 255));
-        descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(196, 149, 81, 255));
+        cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(196, 149, 81, 255),false);
+        americano =  x(americano,"Americano","Americano .png",new Color(196, 149, 81, 255),false);
+        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(196, 149, 81, 255),false);
+        leche =  x(leche,"Leche","leche.png",new Color(196, 149, 81, 255),false);
+        descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(196, 149, 81, 255),false);
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
@@ -119,7 +113,7 @@ public class Cafetera extends javax.swing.JFrame {
         return x;
     }
 
-    private JButton x(JButton x, String nombre,String imagen,Color color){
+    private JButton x(JButton x, String nombre,String imagen,Color color,boolean dimension){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
         Image nueva_original = original.getScaledInstance(160, 60, Image.SCALE_SMOOTH);
@@ -132,6 +126,7 @@ public class Cafetera extends javax.swing.JFrame {
 
         JButton finalX = x;
         finalX.setAlignmentX(Component.CENTER_ALIGNMENT);
+        if(dimension)finalX.setPreferredSize(new Dimension(100, 50));
         x.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -143,10 +138,7 @@ public class Cafetera extends javax.swing.JFrame {
                else if (finalX.getText().equals("+")) incrementarAzucar();
                else if (finalX.getText().equals("-")) decrementarAzucar();
             }
-
         });
-
-
 
         return x;
     }
@@ -158,7 +150,6 @@ public class Cafetera extends javax.swing.JFrame {
             actualizarBarras();
         } else {
             rellenado();
-
         }
     }
 
