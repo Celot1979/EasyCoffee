@@ -126,7 +126,7 @@ public class Cafetera extends javax.swing.JFrame {
 
         JButton finalX = x;
         finalX.setAlignmentX(Component.CENTER_ALIGNMENT);
-        if(dimension)finalX.setPreferredSize(new Dimension(100, 50));
+        if(dimension)finalX.setPreferredSize(new Dimension(50, 50));
         x.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
