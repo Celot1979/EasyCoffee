@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
 // Creación del Panel y de sus caracteristicas.
 public class Cafetera extends javax.swing.JFrame {
     private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
@@ -71,6 +69,7 @@ public class Cafetera extends javax.swing.JFrame {
         barraAzucarPanel.add(botonIncrementarAzucar);
         barraAzucarPanel.add(barraAzucar);
         barraAzucarPanel.add(botonDecrementarAzucar);
+
         // Se agrega el sub-Marco al marco central y general
         add(barraPanel, BorderLayout.CENTER);
         add(barraAzucarPanel,BorderLayout.WEST);
@@ -88,14 +87,15 @@ public class Cafetera extends javax.swing.JFrame {
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
-        buttonPanel.add(americano);
         buttonPanel.add(leche);
         buttonPanel.add(cafe_cortado);
         buttonPanel.add(descafeinado);
-
+        // Se añade el subPanel al Panel General
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+
+    // MÉTODO QUE CREA LAS BARRAS DE DÉPOSITO Y SU COMPORTAMIENTO
     private JProgressBar x(JProgressBar x ,int y, String s){
         //Se crea la barra/as
         x =new JProgressBar(JProgressBar.VERTICAL, 0, 100);
@@ -112,7 +112,7 @@ public class Cafetera extends javax.swing.JFrame {
         x.setString(s);
         return x;
     }
-
+    // MÉTODO QUE CREA LOS BOTONES  Y SU COMPORTAMIENTO
     private JButton x(JButton x, String nombre,String imagen,Color color,boolean dimension){
         ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
         Image original = icono.getImage();
@@ -130,7 +130,7 @@ public class Cafetera extends javax.swing.JFrame {
         x.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(finalX.getText().equals("Espresso"))  {hacerCafe();}
+               if(finalX.getText().equals("Espresso"))hacerCafe();
                else if (finalX.getText().equals("Americano"))  americano();
                else if (finalX.getText().equals("Leche")) hacerLeche();
                else if (finalX.getText().equals("Cortado"))cafe_cortado();
@@ -142,7 +142,7 @@ public class Cafetera extends javax.swing.JFrame {
 
         return x;
     }
-
+    // MÉTODOS QUE DESARROLLAN LA ACCIÓN AL PRESIONAR LOS BOTONES
     private void hacerCafe() {
         if (aguaLevel >= 10 && cafeLevel >= 5) {
             aguaLevel -= 10;
@@ -234,14 +234,15 @@ public class Cafetera extends javax.swing.JFrame {
 
 
     public static void main(String[] args) {
-        //Código para que se vea la interfaz gráfica igual en todos los sistemas operativos
+
+        // Importante: CÓDIGO QUE NORMALIZA EL COMPORTAMIENTO DE LA APLICACIÓN EN CUALQUIER SISTEMA OPERATIVO
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // Con estás instrucciones los botones responden con el mismo color en cada evento.
+        // TODOS LOS BOTONES TIENEN EL MISMO COLOR INDEPENDIENTEMENTE DEL EVENTO.
         //UIManager.put("Button.background", new Color(196, 149, 81, 255));
         UIManager.put("Button.focus", new Color(196, 149, 81, 255));
         UIManager.put("Button.select", new Color(196, 149, 81, 255));
