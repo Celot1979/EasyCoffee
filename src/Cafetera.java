@@ -117,7 +117,7 @@ public class Cafetera extends javax.swing.JFrame {
     }
     // MÉTODO QUE CREA LOS BOTONES  Y SU COMPORTAMIENTO
     private JButton x(JButton x, String nombre,String imagen,Color color,boolean dimension){
-        ImageIcon icono = new  ImageIcon( "src/IMG/" + imagen);
+        ImageIcon icono = new  ImageIcon( "src/resources/" + imagen);
         Image original = icono.getImage();
         Image nueva_original = original.getScaledInstance(160, 60, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);

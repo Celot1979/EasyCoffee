@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EasyCoffee:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EasyCoffee_jar</output-path>
+    <root id="archive" name="EasyCoffee.jar">
+      <element id="module-output" name="EasyCoffee" />
+    </root>
+  </artifact>
+</component>
