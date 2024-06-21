@@ -37,7 +37,7 @@ public class Cafetera extends javax.swing.JFrame {
         aguaBar= x(aguaBar,aguaLevel,"water");
         cafeBar = x(cafeBar,cafeLevel,"Coffee");
         lecheBar= x(lecheBar,lecheLevel,"Milk");
-        descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"");
+        descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descaffeinated");
 
         // Etiqueta para mostrar la cantidad de azúcar
         etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
