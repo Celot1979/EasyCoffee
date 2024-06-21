@@ -40,9 +40,10 @@ public class Cafetera extends javax.swing.JFrame {
         descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descaffeinated");
 
         // Etiqueta para mostrar la cantidad de azúcar
-        etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
+        etiquetaAzucar = new JLabel("Sugar: " + azucar + " cdtas");
         etiquetaAzucar.setBounds(300, 350, 100, 30);
         etiquetaAzucar.setForeground(Color.white);
+        etiquetaAzucar.setFont(new Font("Arial",3,18));
         etiquetaAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Botón de incrementar el azúcaar
@@ -103,6 +104,8 @@ public class Cafetera extends javax.swing.JFrame {
         x.setBackground(Color.black);
         x.setForeground(new Color(196, 149, 81, 255));
         x.setAlignmentX(Component.CENTER_ALIGNMENT);
+        x.setFont(new Font("Arial",3,18));
+
         // Se le da un tamaño a las barras. De ancho y altura * OJO!! en Mas no funciona
         x.setPreferredSize(new Dimension(1200, 30));
         //Se evalua lo métodos que contienen la cantidad de agua, café, leche y descafeinado
