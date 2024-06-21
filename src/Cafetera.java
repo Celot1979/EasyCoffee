@@ -22,6 +22,7 @@ public class Cafetera extends javax.swing.JFrame {
         // Configuración básica de la ventana
         setTitle("EasyCoffe");
         setSize(800, 1000);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);// Se incia en pantalla completa
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         // Crear el panel de barras
@@ -80,14 +81,15 @@ public class Cafetera extends javax.swing.JFrame {
         buttonPanel.setLayout(new GridLayout(1, 5));
 
         // Crear botones para hacer café, leche y descafeinado
-        cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(196, 149, 81, 255),false);
-        americano =  x(americano,"Americano","Americano .png",new Color(196, 149, 81, 255),false);
-        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(196, 149, 81, 255),false);
-        leche =  x(leche,"Leche","leche.png",new Color(196, 149, 81, 255),false);
-        descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(196, 149, 81, 255),false);
+        cafe_solo = x(cafe_solo, "Espresso","Espresso.png",new Color(141, 86, 7, 255),false);
+        americano =  x(americano,"Americano","Americano.png",new Color(141, 86, 7, 255),false);
+        cafe_cortado =  x(cafe_cortado,"Cortado","Cortado.png",new Color(141, 86, 7, 255),false);
+        leche =  x(leche,"Leche","leche.png",new Color(141, 86, 7, 255),false);
+        descafeinado =  x(leche,"Descafeinado","Descafeinado.png",new Color(141, 86, 7, 255),false);
 
         // Añadir los botones al panel
         buttonPanel.add(cafe_solo);
+        buttonPanel.add(americano);
         buttonPanel.add(leche);
         buttonPanel.add(cafe_cortado);
         buttonPanel.add(descafeinado);
@@ -117,19 +119,22 @@ public class Cafetera extends javax.swing.JFrame {
     }
     // MÉTODO QUE CREA LOS BOTONES  Y SU COMPORTAMIENTO
     private JButton x(JButton x, String nombre,String imagen,Color color,boolean dimension){
+
         ImageIcon icono = new  ImageIcon( "src/resources/" + imagen);
         Image original = icono.getImage();
-        Image nueva_original = original.getScaledInstance(160, 60, Image.SCALE_SMOOTH);
+        Image nueva_original = original.getScaledInstance(150, 60, Image.SCALE_SMOOTH);
         icono = new ImageIcon(nueva_original);
         x =  new JButton(nombre,icono);
         //Color fondo del botón
         x.setBackground(color);
         //Cambiar tipografia y su color
         x.setForeground(Color.white);
+        x.setFont(new Font("Verdana", Font.BOLD, 20));
 
         JButton finalX = x;
         finalX.setAlignmentX(Component.CENTER_ALIGNMENT);
-        if(dimension)finalX.setPreferredSize(new Dimension(50, 50));
+        if(dimension)finalX.setPreferredSize(new Dimension(30, 53));
+        finalX.setName(nombre);
         x.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
