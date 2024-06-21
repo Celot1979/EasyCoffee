@@ -9,14 +9,14 @@ import java.awt.event.ActionListener;
 // Creación del Panel y de sus caracteristicas.
 public class Cafetera extends javax.swing.JFrame {
     private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
-    private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado;
+    private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado,botonIncrementarAzucar,botonDecrementarAzucar;
     private JSlider barraAzucar;
     private JLabel etiquetaAzucar;
     private int aguaLevel = 100;
     private int cafeLevel = 100;
     private int lecheLevel = 100;
     private int descafeinadoLevel = 100;
-    private static final int MAX_AZUCAR = 10; // cucharadas
+    private static final int MAX_AZUCAR = 5; // cucharadas
     private int azucar = 0;
 
     public Cafetera() {
@@ -28,6 +28,10 @@ public class Cafetera extends javax.swing.JFrame {
         // Crear el panel de barras
         JPanel barraPanel = new JPanel();
         barraPanel.setLayout(new GridLayout(1, 5));
+        // Crear la Layout para el azúcar
+        JPanel barraAzucarPanel = new JPanel();
+        barraAzucarPanel.setLayout(new BoxLayout( barraAzucarPanel, BoxLayout.Y_AXIS));
+        barraAzucarPanel.setBackground(new Color(196, 149, 81, 255));
 
 
         // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
@@ -36,45 +40,47 @@ public class Cafetera extends javax.swing.JFrame {
         cafeBar = x(cafeBar,cafeLevel,"Cafe");
         lecheBar= x(lecheBar,lecheLevel,"Leche");
         descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descafeinado");
-        //Creamos el JSlider de la azúcar con sus botones
-        barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
-        barraAzucar.setBounds(300, 150, 50, 200);
-        barraAzucar.setMajorTickSpacing(1);
-        barraAzucar.setPaintTicks(true);
-        barraAzucar.setPaintLabels(true);
+
         // Etiqueta para mostrar la cantidad de azúcar
         etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
         etiquetaAzucar.setBounds(300, 350, 100, 30);
-        barraPanel.add(etiquetaAzucar);
+        etiquetaAzucar.setForeground(Color.white);
+        etiquetaAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Botones para incrementar y decrementar el azúcar
-        JButton botonIncrementarAzucar = new JButton("+");
-        botonIncrementarAzucar.setBounds(300, 100, 50, 50);
-        botonIncrementarAzucar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                incrementarAzucar();
-            }
-        });
-        barraPanel.add(botonIncrementarAzucar);
+        //Botón de incrementar el azúcaar
 
-        JButton botonDecrementarAzucar = new JButton("-");
-        botonDecrementarAzucar.setBounds(300, 400, 50, 50);
-        botonDecrementarAzucar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                decrementarAzucar();
-            }
-        });
-        barraPanel.add(botonDecrementarAzucar);
+        botonIncrementarAzucar =x(botonIncrementarAzucar, "+","Mas.png",new Color(196, 149, 81, 255));
+        botonIncrementarAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botonIncrementarAzucar.setPreferredSize(new Dimension(100, 50));
+
+
+        botonDecrementarAzucar =x(botonDecrementarAzucar, "-","Menos.png",new Color(196, 149, 81, 255));
+        botonDecrementarAzucar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botonDecrementarAzucar.setPreferredSize(new Dimension(100, 50));
+
+        //Creamos el JSlider de la azúcar con sus botones
+        barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
+        barraAzucar.setBounds(300, 150, 10000, 200);
+        barraAzucar.setMajorTickSpacing(1);
+        barraAzucar.setPaintTicks(true);
+        barraAzucar.setPaintLabels(true);
+        barraAzucar.setBackground(new Color(196, 149, 81, 255));
+        barraAzucarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         // Añadir las barras de progreso al panel y el JSlider de la azúcar
         barraPanel.add(aguaBar);
         barraPanel.add(cafeBar);
         barraPanel.add(lecheBar);
         barraPanel.add(descafeinadoBar);
-        barraPanel.add(barraAzucar);
+        // Añadir los elementos que conforman el Layaout del azúcar
+        barraAzucarPanel.add(etiquetaAzucar);
+        barraAzucarPanel.add(botonIncrementarAzucar);
+        barraAzucarPanel.add(barraAzucar);
+        barraAzucarPanel.add(botonDecrementarAzucar);
         // Se agrega el sub-Marco al marco central y general
         add(barraPanel, BorderLayout.CENTER);
-
+        add(barraAzucarPanel,BorderLayout.WEST);
         // Crear el panel de botones
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 5));
@@ -102,9 +108,9 @@ public class Cafetera extends javax.swing.JFrame {
         // Se crea un estilo con color de tipo/os, barra/as y tipografia/as
         x.setBackground(Color.black);
         x.setForeground(new Color(196, 149, 81, 255));
-
+        x.setAlignmentX(Component.CENTER_ALIGNMENT);
         // Se le da un tamaño a las barras. De ancho y altura * OJO!! en Mas no funciona
-        x.setPreferredSize(new Dimension(250, 30));
+        x.setPreferredSize(new Dimension(1200, 30));
         //Se evalua lo métodos que contienen la cantidad de agua, café, leche y descafeinado
         x.setValue(y);
         // Se implementa el nombre dentro de la interfaz gráfica de cada nombre de las barras
@@ -123,8 +129,9 @@ public class Cafetera extends javax.swing.JFrame {
         x.setBackground(color);
         //Cambiar tipografia y su color
         x.setForeground(Color.white);
-        JButton finalX = x;
 
+        JButton finalX = x;
+        finalX.setAlignmentX(Component.CENTER_ALIGNMENT);
         x.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,6 +140,8 @@ public class Cafetera extends javax.swing.JFrame {
                else if (finalX.getText().equals("Leche")) hacerLeche();
                else if (finalX.getText().equals("Cortado"))cafe_cortado();
                else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
+               else if (finalX.getText().equals("+")) incrementarAzucar();
+               else if (finalX.getText().equals("-")) decrementarAzucar();
             }
 
         });
