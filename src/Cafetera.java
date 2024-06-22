@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +8,7 @@ import java.awt.event.ActionListener;
 // Creación del Panel y de sus caracteristicas.
 public class Cafetera extends javax.swing.JFrame {
     private JProgressBar aguaBar,cafeBar,lecheBar,descafeinadoBar;
-    private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado,botonIncrementarAzucar,botonDecrementarAzucar;
+    private JButton cafe_solo,americano,cafe_cortado,leche,descafeinado,botonIncrementarAzucar,botonDecrementarAzucar,botonApagado;
     private JSlider barraAzucar;
     private JLabel etiquetaAzucar;
     private int aguaLevel = 100;
@@ -35,13 +36,13 @@ public class Cafetera extends javax.swing.JFrame {
 
 
         // Exite un método en la clase  creado especificamente para crear las barras y sus compportamientos.
-        aguaBar= x(aguaBar,aguaLevel,"water");
-        cafeBar = x(cafeBar,cafeLevel,"Coffee");
-        lecheBar= x(lecheBar,lecheLevel,"Milk");
-        descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descaffeinated");
+        aguaBar= x(aguaBar,aguaLevel,"Agua");
+        cafeBar = x(cafeBar,cafeLevel,"Café");
+        lecheBar= x(lecheBar,lecheLevel,"Leche");
+        descafeinadoBar= x(descafeinadoBar,descafeinadoLevel,"Descafeinado");
 
         // Etiqueta para mostrar la cantidad de azúcar
-        etiquetaAzucar = new JLabel("Sugar: " + azucar + " cdtas");
+        etiquetaAzucar = new JLabel("Azúcar: " + azucar + " cdtas");
         etiquetaAzucar.setBounds(300, 350, 100, 30);
         etiquetaAzucar.setForeground(Color.white);
         etiquetaAzucar.setFont(new Font("Arial",3,18));
@@ -50,7 +51,9 @@ public class Cafetera extends javax.swing.JFrame {
         //Botón de incrementar el azúcaar
         botonIncrementarAzucar =x(botonIncrementarAzucar, "+","Mas.png",new Color(196, 149, 81, 255),true);
         botonDecrementarAzucar =x(botonDecrementarAzucar, "-","Menos.png",new Color(196, 149, 81, 255),true);
-
+        botonApagado= x(botonApagado, " ","Apagado.png",new Color(196, 149, 81, 255),true);
+        Border borde = BorderFactory.createLineBorder(Color.red, 4);
+       // botonApagado.setBorder(borde);
         //Creamos el JSlider de la azúcar con sus botones
         barraAzucar = new JSlider(JSlider.VERTICAL, 0, MAX_AZUCAR, azucar);
         barraAzucar.setBounds(300, 150, 10000, 200);
@@ -67,6 +70,8 @@ public class Cafetera extends javax.swing.JFrame {
         barraPanel.add(descafeinadoBar);
 
         // Añadir los elementos que conforman el Layaout del azúcar
+       // barraAzucarPanel.add(etiquetaAzucar);
+        barraAzucarPanel.add(botonApagado);
         barraAzucarPanel.add(etiquetaAzucar);
         barraAzucarPanel.add(botonIncrementarAzucar);
         barraAzucarPanel.add(barraAzucar);
@@ -145,6 +150,7 @@ public class Cafetera extends javax.swing.JFrame {
                else if (finalX.getText().equals("Descafeinado")) hacerDescafeinado();
                else if (finalX.getText().equals("+")) incrementarAzucar();
                else if (finalX.getText().equals("-")) decrementarAzucar();
+               else if (finalX.getText().equals(" ")) System.exit(0);
             }
         });
 
@@ -156,6 +162,7 @@ public class Cafetera extends javax.swing.JFrame {
             aguaLevel -= 10;
             cafeLevel -= 5;
             actualizarBarras();
+
         } else {
             rellenado();
         }
@@ -239,7 +246,6 @@ public class Cafetera extends javax.swing.JFrame {
             etiquetaAzucar.setText("Azúcar: " + azucar + " cdtas");
         }
     }
-
 
     public static void main(String[] args) {
 
